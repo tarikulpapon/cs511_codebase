@@ -21,7 +21,7 @@ for i, w in enumerate(weight):
 sub = -1
 for i, list in enumerate(capacity):
     for j, c in enumerate(list):
-        if j >= i and c > 0:
+        if j > i:
             temp = c * Int('v_%s' % (i+1)) * Int('v_%s' % (j+1))
             if sub == -1:
                 sub = temp
@@ -38,10 +38,12 @@ for i, v in enumerate(weight):
 s = Optimize()
 s.add(constraints)
 s.maximize(obj)
+
 if s.check() == unsat:
     print('false')
 else:
     m = s.model()
     sorted_model = sorted([(d, m[d]) for d in m], key=lambda x: str(x))
     print(sorted_model)
+    print(m.evaluate(obj))
 
