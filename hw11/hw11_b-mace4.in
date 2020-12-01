@@ -1,0 +1,35 @@
+clear(print_initial_clauses).
+clear(print_kept).
+clear(print_given).
+assign(max_seconds,30).
+
+
+formulas(assumptions).
+
+L(x, x).
+
+(L(x, y) & L(y, x)) -> (x = y).
+
+
+(L(x, y) & L(y, z)) -> L(x, z).
+
+L(bot, x).
+
+L(x, top).
+
+L(LUB(x, y), z) <-> (L(x, z) & L(y, z)).
+
+L(z, GLB(x, y)) <-> (L(z, x) & L(z, y)).
+
+LUB(x, GLB(y, z)) = GLB(LUB(x, y),LUB(x, z)).
+
+GLB(x, LUB(y, z)) = LUB(GLB(x, y),GLB(x, z)).
+
+end_of_list.
+
+
+formulas(goals).
+
+LUB(x, y) = LUB(y, x) & GLB(x, y) = GLB(y, x).
+
+end_of_list.
