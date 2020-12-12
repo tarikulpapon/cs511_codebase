@@ -46,14 +46,18 @@ if s.check() == unsat:
 model = s.model()
 
 for i in range(n):
-    print "",
+    print ""
+
     for j in range(n):
+
         if is_true(model.evaluate(Q[i][j])):
             print "Q",
         elif is_true(model.evaluate(R[i][j])):
             print "R",
         else:
             print "-",
+
         if j != n - 1:
             print "\t",
+            
     print ""
